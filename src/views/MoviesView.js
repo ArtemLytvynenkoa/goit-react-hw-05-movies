@@ -33,17 +33,17 @@ export default function MoviesView() {
         
         setMovies(results.map(({ id, title }) => ({ id, title })));
         setStatus(STATUS.RESOLVE);
+        history.push({
+        // ...location,
+        search: `?query=${query}`
+        })
       })
       .catch(error => {
         setError(error.message);
         
         setStatus(STATUS.REJECT);
       })
-      .finally(() => history.push({
-        ...location,
-        search: `?query=${query}`
-      }))
-  }, [query]);
+  }, [history, query]);
 
   const handleChange = e => {
     setValue(e.currentTarget.value.toLowerCase().trim())
