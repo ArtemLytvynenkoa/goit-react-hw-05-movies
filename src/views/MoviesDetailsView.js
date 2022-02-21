@@ -43,7 +43,7 @@ export default function MoviesDetailsView() {
     }, [movieId]);
 
     const onGoBack = () => {
-        history.push(location?.state?.from ?? '/movies')
+        history.push(location?.state?.from ?? '/')
     }
 
     return (

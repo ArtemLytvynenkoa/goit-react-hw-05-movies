@@ -22,6 +22,9 @@ function List({ movieId, details }) {
         if (details === 'cast') {
             filmLibraryApi.fetchMoviesCast(movieId)
                 .then(({ cast }) => {
+                    if (cast.length === 0) {
+                        return Promise.reject(new Error('We don`t have any cast for this movie.'))
+                    }
                     setFilmDetails(
                         cast.map(({ character, name, profile_path, id }) => ({ character, name, img: profile_path, id }))
                     );
